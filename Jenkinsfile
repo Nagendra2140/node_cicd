@@ -10,6 +10,8 @@ pipeline {
         stage("deploy"){
             steps {
                 sshagent(['Nodejs']) {
+                    sh "ssh ubuntu@13.126.249.23 'zip -r "node-$(date +"%Y-%m-%d").zip" /var/www/html/*'"
+                    sh "ssh ubuntu@13.126.249.23 'mv -r /var/www/html/*.zip /bkp/'"
                     sh "ssh ubuntu@13.126.249.23 'rm -r /var/www/html/*'"
                     sh "scp -r -o StrictHostKeyChecking=no /var/lib/jenkins/workspace/node-dev/* ubuntu@13.126.249.23:/var/www/html/"
                     sh "ssh ubuntu@13.126.249.23 /var/www/html/npm.sh"
