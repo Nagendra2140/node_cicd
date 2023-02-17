@@ -4,7 +4,7 @@ pipeline {
         stage("clone code") {
             steps {
                 sh "rm -r *"
-                git url: 'https://github.com/Nagendra2140/node_cicd.git'
+                git url: 'git clone -b dev https://github.com/Nagendra2140/node_cicd.git'
             }
         }
         stage("deploy"){
