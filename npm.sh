@@ -14,4 +14,4 @@ sudo npm install
 
 #pm2 start cms.js
 
-pm2 restart cms
+pm2 -f restart cms
