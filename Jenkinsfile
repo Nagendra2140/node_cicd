@@ -10,6 +10,7 @@ pipeline {
         stage("deploy"){
             steps {
                 sshagent(['Nodejs']) {
+                    sh "rm -r /var/www/html/*"
                     sh "scp -r -o StrictHostKeyChecking=no /var/lib/jenkins/workspace/node-dev/* ubuntu@13.126.249.23:/var/www/html/"
                     sh "ssh ubuntu@13.126.249.23 /var/www/html/npm.sh"
                 }
